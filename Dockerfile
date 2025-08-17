@@ -1,3 +1,4 @@
+
 FROM ubuntu:latest
 
 # Set the working directory in the image
@@ -14,3 +15,4 @@ ENV NAME World
 
 # Run a command to start the application
 CMD ["python3", "app.py"]
+
