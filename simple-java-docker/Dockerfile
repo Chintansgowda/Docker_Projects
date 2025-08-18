@@ -1,19 +1,18 @@
-# stable official Java runtime base image
+# 1. Use base image with Java Development Kit (JDK) version 17 (alpine = lightweight Linux distro)
 FROM openjdk:17-jdk-alpine
 
-# metadata
-LABEL maintainer="your-email@example.com"
-LABEL version="1.0"
-LABEL description="A simple Java application"
+# 2. Set an environment variable inside the container (can be accessed with $user)
+ENV user=chintan
 
-# working directory
+# 3. Set working directory inside the container (all next commands run from here)
 WORKDIR /app
 
-# Copy source code into the container
-COPY src/Main.java /app/Main.java
+# 4. Copy Main.java file from your local "src" folder into the container's /app directory
+COPY src/Main.java /app
 
-# Compile the Java code
+# 5. Compile the Java program into bytecode (.class file) inside the container
 RUN javac Main.java
 
-# Run the Java application when the container starts
-CMD ["java", "Main"]
+# 6. Define the default command to run when container starts
+#    → Runs the Java program by calling the Main class
+ENTRYPOINT ["java","Main"]
